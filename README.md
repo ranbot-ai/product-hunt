@@ -21,7 +21,7 @@ Automatically fetch daily Product Hunt products and export them to CSV format, s
 ### 1. Clone or Download the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:ranbot-ai/product-hunt.git
 cd product-hunt
 ```
 
@@ -64,7 +64,26 @@ This will create a CSV file in the `output/` directory with the format: `product
 
 ### Automated Daily Run (Cron Job)
 
-#### On macOS/Linux:
+#### Using the provided script (macOS/Linux):
+
+A `run.sh` script is provided in the `scripts/` folder that will:
+- Run the fetcher
+- Automatically commit the CSV file
+- Push to GitHub
+
+1. Open your crontab:
+   ```bash
+   crontab -e
+   ```
+
+2. Add a daily job (runs at 11:59 PM daily):
+   ```bash
+   59 23 * * * /path/to/product-hunt/scripts/run.sh
+   ```
+
+3. The script will log output to `tmp/log.txt`
+
+#### Manual setup (macOS/Linux):
 
 1. Open your crontab:
    ```bash
@@ -102,6 +121,7 @@ The CSV file contains the following columns:
 | URL | Product Hunt URL |
 | Website | Product website URL |
 | Topics | Product categories/topics |
+| Description | Product description |
 | Created At | Launch date |
 
 ## Project Structure
@@ -113,7 +133,10 @@ product-hunt/
 │   └── utils/
 │       ├── api.js        # Product Hunt API client
 │       └── csv.js        # CSV export utilities
-├── output/               # Generated CSV files (git-ignored)
+├── scripts/
+│   └── run.sh            # Automated run script with git commit/push
+├── output/               # Generated CSV files
+├── tmp/                  # Log files (git-ignored)
 ├── .env                  # Your API configuration (git-ignored)
 ├── .env.example          # Example configuration
 ├── .gitignore            # Git ignore rules

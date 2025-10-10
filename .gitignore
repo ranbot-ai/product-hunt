@@ -22,11 +22,16 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+.gitkeep
 
 # Output files
-# output/
 # *.csv
 
-# Temporary files
+scripts/
+
+# Temporary files and logs
 tmp/
 temp/
+*.log.txt
+
+.cursorrules
