@@ -1,4 +1,4 @@
-# Product Hunt Daily Fetcher
+# Product Hunt Tracker | 2025 Activity
 
 Automatically fetch daily Product Hunt products and export them to CSV format, sorted by vote count.
 
